@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mega sklep</title>
 </head>
 <body>
-<script src="js/main.js"></script>
+<section class="prodacts">
+    <h1>Lista produktu</h1>
+    <ul>
+        <li>
+            <strong>Ogórki kiszone</strong> - 9.99 <button class="btn-buy-product" data-name="cucumber" data-price="9.99">Kup</button>
+        </li>
+        <li>
+            <strong>Pomidory</strong> - 7.50 <button class="btn-buy-product" data-name="tomato" data-price="7.50">Kup</button>
+        </li>
+        <li>
+            <strong>Kalarepa</strong> - 2.18 <button class="btn-buy-product" data-name="kohlrabi" data-price="2.18">Kup</button>
+        </li>
+
+    </ul>
+</section>
+<section class="basket">
+    <h1>Koszyk</h1>
+    <ul class="basket-list"></ul>
+    <p>Wartość koszyka <strong id="total-price">0</strong> zł.</p>
+    <button class="btn-buy-all" disabled>Złóż zamówienie</button>
+</section>
+<script src="src/basket.js"></script>
+<script src="src/ui.js"></script>
 </body>
 </html>

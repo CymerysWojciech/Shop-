@@ -17,9 +17,8 @@ class Basket{
         return this.items.reduce((prev,product) => prev + product.price, 0)
     }
     showBasket(){
-        this.items
+        return this.items
             .map((product, i)=>`${i+1} - ${product.name} - ${product.price.toFixed(2)} zł`)
-            .forEach(line =>console.log(line));
     }
 
 }
@@ -33,15 +32,3 @@ class Product{
     }
 }
 
-const oranges = new Product("Pomarańcza luz", 5.22);
-const cucumbers = new Product("Ogórek duży",3.77);
-
-
-
-const shopBasket = new Basket();
-shopBasket.add(oranges);
-shopBasket.add(cucumbers);
-//shopBasket.showBasket();
-//shopBasket.remove(2);
-shopBasket.showBasket()
-console.log(shopBasket.getTotalValue())
