@@ -44,4 +44,6 @@ const buyAllProducts = () => {
 };
 
 buyBtns.forEach( buyBtn => buyBtn.addEventListener('click',AddProductToBasket));
-buyAllBtn.addEventListener('click',buyAllProducts)
+buyAllBtn.addEventListener('click',buyAllProducts);
+
+createBasketUi()
