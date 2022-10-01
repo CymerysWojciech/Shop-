@@ -1,18 +1,33 @@
 const buyBtns = [...document.querySelectorAll('[data-name]')];
+const buyAllBtn = document.querySelector(".btn-buy-all")
 const basketList = document.querySelector( ".basket-list");
 const totalPrice = document.querySelector("#total-price");
+
+
+
 const basket = new Basket();
 
+const removeItem = event =>{
+    const id = Number(event.target.dataset.id);
+    basket.remove(id);
+    createBasketUi();
+}
+
 const createBasketUi = () => {
-    basketList.innerText = ""
-    basket.showBasket().forEach((product)=>{
+    const basketTotalValue = basket.getTotalValue().toFixed(2);
+    basketList.innerText = "";
+    totalPrice.innerText = "0";
+
+
+    basket.showBasket().forEach(({name, id, price})=>{
         const newLi = document.createElement('li');
-        newLi.innerText =product
+        newLi.innerText =`${name} - ${price.toFixed(2)}zł.`;
+        newLi.addEventListener('click', removeItem)
         basketList.appendChild(newLi);
-        totalPrice.innerText = basket.getTotalValue().toFixed(2);
+        newLi.dataset.id = id;
+        totalPrice.innerText = basketTotalValue
+        basketTotalValue ? buyAllBtn.removeAttribute("disabled"):buyAllBtn.setAttribute("disabled")
     })
-
-
 };
 
 const AddProductToBasket = event => {
@@ -22,8 +37,11 @@ const AddProductToBasket = event => {
     basket.add(newProduct)
     createBasketUi()
 };
-buyBtns.forEach((buyBtn)=>{
+const buyAllProducts = () => {
+    basket.clearBasket();
+    createBasketUi()
+    alert('Zamówienie zostało przyjęte')
+};
 
-
-    buyBtn.addEventListener('click',AddProductToBasket)
-})
+buyBtns.forEach( buyBtn => buyBtn.addEventListener('click',AddProductToBasket));
+buyAllBtn.addEventListener('click',buyAllProducts)
